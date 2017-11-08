@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/labstack/echo"
-	"github.com/zaru/sample-struct/handlers"
+	"github.com/zaru/go-echo-api-test-sample/handlers"
 )
 
 func main() {

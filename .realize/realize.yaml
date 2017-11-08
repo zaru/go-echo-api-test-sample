@@ -8,7 +8,7 @@ server:
   host: localhost
   port: 5001
 schema:
-- name: sample-struct
+- name: go-echo-api-test-sample
   path: .
   commands:
     run: true
