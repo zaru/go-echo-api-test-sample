@@ -15,6 +15,10 @@ type handler struct {
 	UserModel user.UserModel
 }
 
+func NewHandler(u user.UserModel) *handler {
+	return &handler{u}
+}
+
 func (h *handler) GetIndex(c echo.Context) error {
 	lists := h.UserModel.All()
 	u := &resultLists{

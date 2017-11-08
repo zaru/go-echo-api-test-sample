@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  branch = "master"
+  name = "github.com/jmoiron/sqlx"
+  packages = [".","reflectx"]
+  revision = "3379e5993990b1f927fc8db926485e6f6becf2d2"
+
+[[projects]]
   name = "github.com/labstack/echo"
   packages = ["."]
   revision = "cec7629194fe4bf83b0c72d9a02d340c7a1468ac"
@@ -12,6 +18,12 @@
   packages = ["color","log"]
   revision = "57409ada9da0f2afad6664c49502f8c50fbd8476"
   version = "0.2.3"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/lib/pq"
+  packages = [".","oid"]
+  revision = "b609790bd85edf8e9ab7e0f8912750a786177bcf"
 
 [[projects]]
   name = "github.com/mattn/go-colorable"
@@ -52,6 +64,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "e81cc2cb20c5749b79cb0f42cab35f3eb61055f07d7352d99b06b146175242d4"
+  inputs-digest = "b442a6bc482d4d78caff4a6bcdb9d631ec49c55f73de557ca11e0e101ef735ad"
   solver-name = "gps-cdcl"
   solver-version = 1

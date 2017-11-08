@@ -9,7 +9,16 @@ services:
       - "1324:1324"
     tty: yes
     depends_on:
+      - db
       - kvs
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_DB: sample_db
+      POSTGRES_USER: pg-user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
   kvs:
     image: redis
     ports:
