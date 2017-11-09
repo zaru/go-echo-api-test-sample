@@ -12,15 +12,15 @@ type resultLists struct {
 }
 
 type handler struct {
-	UserModel user.UserModel
+	UserModel user.UserModelImpl
 }
 
-func NewHandler(u user.UserModel) *handler {
+func NewHandler(u user.UserModelImpl) *handler {
 	return &handler{u}
 }
 
 func (h *handler) GetIndex(c echo.Context) error {
-	lists := h.UserModel.All()
+	lists := h.UserModel.FindAll()
 	u := &resultLists{
 		Users: lists,
 	}
@@ -29,6 +29,6 @@ func (h *handler) GetIndex(c echo.Context) error {
 
 func (h *handler) GetDetail(c echo.Context) error {
 	id := c.Param("id")
-	u := h.UserModel.GetDetail(id)
+	u := h.UserModel.FindByID(id)
 	return c.JSON(http.StatusOK, u)
 }

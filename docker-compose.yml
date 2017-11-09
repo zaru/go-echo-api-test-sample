@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: golang:1.9.2
+    build: .
     volumes:
       - .:/go/src/github.com/zaru/go-echo-api-test-sample:cached
     ports:

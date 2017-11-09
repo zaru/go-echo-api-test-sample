@@ -9,7 +9,7 @@ import (
 func main() {
 	e := echo.New()
 
-	h := users.NewHandler(user.NewUsersModel())
+	h := users.NewHandler(user.NewUserModel())
 
 	e.GET("/users", h.GetIndex)
 	e.GET("/users/:id", h.GetDetail)

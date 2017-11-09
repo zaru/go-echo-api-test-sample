@@ -1,46 +1,42 @@
 package user
 
 import (
-	"log"
-
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
+	"github.com/zaru/go-echo-api-test-sample/db"
 )
 
 type (
-	UserModel interface {
-		GetDetail(id string) User
-		All() []User
+	UserModelImpl interface {
+		FindByID(id string) User
+		FindAll() []User
 	}
 
 	User struct {
-		ID   int    `json:"id"`
-		Name string `json:"name"`
+		ID   int    `json:"id" db:"id"`
+		Name string `json:"name" db:"name"`
 	}
 
-	UsersModel struct {
-		users []User
+	UserModel struct {
+		db *sqlx.DB
 	}
 )
 
-func NewUsersModel() *UsersModel {
-	return &UsersModel{}
+func NewUserModel() *UserModel {
+	return &UserModel{
+		db: db.DBConnect(),
+	}
 }
 
-func (u *UsersModel) GetDetail(id string) User {
-	db, err := sqlx.Connect("postgres", "user=pg-user password=password dbname=sample_db sslmode=disable")
-	if err != nil {
-		log.Fatalln(err)
-	}
+func (u *UserModel) FindByID(id string) User {
 	user := User{}
-	db.Select(&user, "SELECT * FROM users limit 1")
+	u.db.Get(&user, "SELECT * FROM users where id = $1 limit 1", id)
+
 	return user
 }
 
-func (u *UsersModel) All() []User {
-	u.users = append(u.users, User{
-		ID:   100,
-		Name: "zaru",
-	})
-	return u.users
+func (u *UserModel) FindAll() []User {
+	users := []User{}
+	u.db.Select(&users, "SELECT * FROM users order by id asc")
+	return users
 }
