@@ -30,7 +30,7 @@ func (u *UsersModelStub) FindAll() []user.User {
 	return users
 }
 
-func GetDetail(t *testing.T) {
+func TestGetDetail(t *testing.T) {
 	e := echo.New()
 	req := httptest.NewRequest(echo.GET, "/", nil)
 	rec := httptest.NewRecorder()
