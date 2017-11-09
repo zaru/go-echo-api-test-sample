@@ -21,7 +21,7 @@ func (u *UsersModelStub) FindByID(id string) user.User {
 		Name: "foo",
 	}
 }
-func (u *UsersModelStub) All() []user.User {
+func (u *UsersModelStub) FindAll() []user.User {
 	users := []user.User{}
 	users = append(users, user.User{
 		ID:   100,
@@ -30,7 +30,7 @@ func (u *UsersModelStub) All() []user.User {
 	return users
 }
 
-func TestFindByID(t *testing.T) {
+func GetDetail(t *testing.T) {
 	e := echo.New()
 	req := httptest.NewRequest(echo.GET, "/", nil)
 	rec := httptest.NewRecorder()
@@ -44,7 +44,7 @@ func TestFindByID(t *testing.T) {
 
 	var userJSON = `{"id":1,"name":"foo"}`
 
-	if assert.NoError(t, h.FindByID(c)) {
+	if assert.NoError(t, h.GetDetail(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
 		fmt.Printf("%v", rec.Body)
 		assert.Equal(t, userJSON, rec.Body.String())
