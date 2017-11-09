@@ -1,7 +1,6 @@
 package users
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -46,7 +45,6 @@ func TestGetDetail(t *testing.T) {
 
 	if assert.NoError(t, h.GetDetail(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
-		fmt.Printf("%v", rec.Body)
 		assert.Equal(t, userJSON, rec.Body.String())
 	}
 }

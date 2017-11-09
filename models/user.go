@@ -3,7 +3,6 @@ package user
 import (
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	"github.com/zaru/go-echo-api-test-sample/db"
 )
 
 type (
@@ -22,9 +21,9 @@ type (
 	}
 )
 
-func NewUserModel() *UserModel {
+func NewUserModel(db *sqlx.DB) *UserModel {
 	return &UserModel{
-		db: db.DBConnect(),
+		db: db,
 	}
 }
 
